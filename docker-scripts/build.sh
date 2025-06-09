@@ -1,0 +1,1 @@
+docker build -t ubuntu20.04-opendds .

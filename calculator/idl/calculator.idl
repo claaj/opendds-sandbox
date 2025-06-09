@@ -1,0 +1,6 @@
+module Example {
+  interface Calculator {
+    long add(in long a, in long b);
+    long multiply(in long a, in long b);
+  };
+};

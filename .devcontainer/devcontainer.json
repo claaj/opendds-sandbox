@@ -1,0 +1,8 @@
+{
+  "name": "opendds-dev",
+  "image": "ubuntu20.04-opendds",
+  "features": {
+    "ghcr.io/devcontainers-extra/features/neovim-homebrew:1": {}
+  },
+  "onCreateCommand": "git clone https://github.com/claaj/nvim.git ~/.config/nvim && export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH && brew install node python3 ripgrep fzf"
+}
