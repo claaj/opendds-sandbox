@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -46,28 +46,18 @@ RUN cd /opt/OpenDDS && \
     export TAO_ROOT=$ACE_ROOT/TAO && \
     cd /opt/OpenDDS/ACE_wrappers/TAO/orbsvcs/ && \
     $ACE_ROOT/bin/mwc.pl -type gnuace -features xerces3=1 && \
-    make -j$(nproc) 
+    make -j$(nproc)
 
 RUN ln -s $TAO_ROOT/orbsvcs/Naming_Service/tao_cosnaming /usr/local/bin/tao_cosnaming && \
     ln -s $TAO_ROOT/orbsvcs/IFR_Service/tao_ifr_service /usr/local/bin/tao_ifr_service && \
     ln -s $TAO_ROOT/orbsvcs/ImplRepo_Service/implrepo_service /usr/local/bin/implrepo_service
 
-#------------------------------------------------------------------------------------------------    
+#------------------------------------------------------------------------------------------------
 
 
-# Crear usuario no-root con UID/GID del host (esto se setea en tiempo de build con ARGs)
-ARG USERNAME=devuser
-ARG USER_UID=1000
-ARG USER_GID=1000
-
-RUN groupadd --gid $USER_GID $USERNAME && \
-    useradd --uid $USER_UID --gid $USER_GID --create-home $USERNAME && \
-    chown -R $USERNAME:$USERNAME /opt/OpenDDS
-
-# Después de crear el usuario devuser, agregar:
-RUN sed -i 's|devuser:x:1000:1000::/home/devuser:/bin/sh|devuser:x:1000:1000::/home/devuser:/usr/bin/bash|g' /etc/passwd
+# A partir de Ububtu 24.04 viene creado un usuario no root "ubuntu"
+ARG USERNAME=ubuntu
 
 USER $USERNAME
 ENV HOME=/home/$USERNAME
 WORKDIR /workspace
-

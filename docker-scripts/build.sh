@@ -1,1 +1,1 @@
-docker build -t ubuntu20.04-opendds .
+docker build -t ubuntu24.04-opendds .
