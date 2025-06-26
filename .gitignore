@@ -1,6 +1,9 @@
+build/
+
 messenger/build/
 messenger/generated/
 
 calculator/build/
 calculator/generated/
 
+.cache/
