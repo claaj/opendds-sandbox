@@ -1,6 +1,10 @@
 {
   "name": "opendds-dev",
   "image": "ubuntu24.04-opendds",
+  "remoteUser": "ubuntu",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
-  "workspaceFolder": "/workspace"
+  "workspaceFolder": "/workspace",
+  "features": {
+    "ghcr.io/devcontainers-extra/features/neovim-homebrew:1": {}
+  }
 }
